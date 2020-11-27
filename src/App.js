@@ -1,23 +1,33 @@
 import logo from './logo.svg';
 import './App.css';
-
+import React from 'react';
+import useDraggable from './hooks/useDraggable';
+import Waste from './components/Waste';
+import Bin from './components/Bin';
 function App() {
+
+  const { position } = useDraggable("handle");
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div
+      style={{
+        position: 'relative',
+        height: window.innerHeight,
+        width: window.innerWidth,
+        backgroundColor: 'grey',
+        overflow: 'hidden',
+        border: '1px solid black',
+      }}
+    >
+      <Waste
+        position={position}
+        size={{
+          height: 200,
+          width: "auto"
+        }}
+      />
+      <Bin />
     </div>
   );
 }
